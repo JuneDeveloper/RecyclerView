@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/background"
-        app:title="Мой гардероб"
+        app:title="@string/tbName"
         app:titleTextColor="@color/white"/>
 
     <androidx.recyclerview.widget.RecyclerView

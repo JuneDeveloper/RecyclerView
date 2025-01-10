@@ -1,6 +1,8 @@
 package com.example.recyclerview
 
-class Object(val image:Int,val name:String,val description:String) {
+import java.io.Serializable
+
+class Object(val image:Int,val name:String,val description:String):Serializable {
 
     companion object {
         val cloth = mutableListOf(

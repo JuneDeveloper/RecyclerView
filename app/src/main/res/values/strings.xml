@@ -5,4 +5,6 @@
     <string name="todo">TODO</string>
     <string name="description">Описание</string>
     <string name="name">Название</string>
+    <string name="tbName">Мой гардероб</string>
+    <string name="back">Назад</string>
 </resources>

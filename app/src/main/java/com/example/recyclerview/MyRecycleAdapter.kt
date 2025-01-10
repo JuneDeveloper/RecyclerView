@@ -10,10 +10,15 @@ import androidx.recyclerview.widget.RecyclerView
 class MyRecycleAdapter(private val cloths:MutableList<Object>) :
     RecyclerView.Adapter<MyRecycleAdapter.UserViewHolder>(){
 
+        private var onClothClickListener:OnClothClickListener? = null
+
+        interface OnClothClickListener{
+            fun onClothClick(cloths:Object,position: Int)
+        }
+
     class UserViewHolder(itemView:View) :RecyclerView.ViewHolder(itemView){
         val imageIV:ImageView = itemView.findViewById(R.id.imageIV)
         val nameTextView:TextView = itemView.findViewById(R.id.nameTV)
-        val ageTextView:TextView = itemView.findViewById(R.id.descriptionTV)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
@@ -26,9 +31,16 @@ class MyRecycleAdapter(private val cloths:MutableList<Object>) :
         val cloth = cloths[position]
         holder.imageIV.setImageResource(cloth.image)
         holder.nameTextView.text = cloth.name
-        holder.ageTextView.text = cloth.description
+        holder.itemView.setOnClickListener {
+            if (onClothClickListener != null){
+                onClothClickListener!!.onClothClick(cloth,position)
+            }
+        }
     }
 
     override fun getItemCount() = cloths.size
 
+    fun setOnClothClickListener(onClothClickListener: OnClothClickListener) {
+        this.onClothClickListener = onClothClickListener
+    }
 }

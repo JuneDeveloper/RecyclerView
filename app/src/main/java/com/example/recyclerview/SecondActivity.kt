@@ -1,6 +1,7 @@
 package com.example.recyclerview
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
@@ -24,10 +25,25 @@ class SecondActivity : AppCompatActivity() {
         toolbarTB = findViewById(R.id.toolbarTB)
         setSupportActionBar(toolbarTB)
 
+        adapterAndBroadcast()
+    }
+
+    private fun adapterAndBroadcast() {
         recycleViewRV = findViewById(R.id.recycleViewRV)
         recycleViewRV.layoutManager = LinearLayoutManager(this)
         val adapter = MyRecycleAdapter(cloth)
         recycleViewRV.adapter = adapter
+        recycleViewRV.setHasFixedSize(true)
+
+        adapter.setOnClothClickListener(object :
+            MyRecycleAdapter.OnClothClickListener {
+            override fun onClothClick(cloths: Object, position: Int) {
+                val intent = Intent(this@SecondActivity, DetailsActivity::class.java)
+                intent.putExtra("cloth", cloths)
+                startActivity(intent)
+                finish()
+            }
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
